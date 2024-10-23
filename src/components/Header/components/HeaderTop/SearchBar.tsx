@@ -5,26 +5,14 @@ import { TbCapture } from "react-icons/tb";
 
 const SearchBar = () => {
   const [search, setSearch] = useState("");
-  const [clicked, setClicked] = useState(false);
   const inputRef = useRef(null);
 
   const searchInput = (e: ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
   };
 
-  const onClickSearchBar = () => {
-    if (inputRef.current) {
-      setClicked(true);
-    } else {
-      setClicked(false);
-    }
-  };
-
   return (
-    <Container
-      onClick={() => onClickSearchBar()}
-      className={clicked ? "clicked-search-bar" : ""}
-    >
+    <Container>
       <div>
         <IoSearch />
       </div>
@@ -52,7 +40,7 @@ const Container = styled.div`
   background: #eee;
   border-radius: 24px;
   padding: 0 14px;
-  box-sizing: border-box;
+
   &:hover {
     background: #ddd;
   }

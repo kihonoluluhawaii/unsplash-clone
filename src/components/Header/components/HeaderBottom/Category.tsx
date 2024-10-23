@@ -104,6 +104,7 @@ const Category = ({ selected, onClick }: Props) => {
 
 const Container = styled.div`
   display: flex;
+  align-items: center;
   gap: 30px;
   height: 100%;
   box-sizing: border-box;
@@ -119,6 +120,7 @@ const Container = styled.div`
     &.active {
       border-bottom: 2px solid black;
       color: black;
+      margin-bottom: -2px;
     }
     &:hover {
       color: black;
