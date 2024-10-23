@@ -1,15 +1,12 @@
 import styled from "@emotion/styled";
+import Layout from "@/layout/Layout.tsx";
 
 function App() {
-
-
   return (
-      <Container>
-          <div>app</div>
-      </Container>
-  )
+    <Container>
+      <Layout />
+    </Container>
+  );
 }
-const Container = styled.div`
-    
-`;
-export default App
+const Container = styled.div``;
+export default App;
