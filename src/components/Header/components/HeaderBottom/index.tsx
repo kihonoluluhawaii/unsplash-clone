@@ -8,6 +8,7 @@ const HeaderBottom = () => {
   const onClick = (label: string) => {
     setSelected(label);
   };
+
   return (
     <Container>
       <Category selected={selected} onClick={onClick} />
