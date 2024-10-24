@@ -5,6 +5,7 @@ import PhotoItem from "@/components/photos/PhotoItem.tsx";
 interface Props {
   data?: IPhoto[];
 }
+
 const PhotoList = ({ data = [] }: Props) => {
   return (
     <Container>

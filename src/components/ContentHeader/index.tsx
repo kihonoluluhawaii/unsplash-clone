@@ -1,32 +1,49 @@
 import styled from "@emotion/styled";
 import { TiPlusOutline } from "react-icons/ti";
 import SearchBar from "@/components/Header/components/HeaderTop/SearchBar.tsx";
-import { BiCustomize } from "react-icons/bi";
 import { AiFillAmazonCircle } from "react-icons/ai";
+import { ReactNode } from "react";
 
-const MainHeader = () => {
+interface Props {
+  title: string;
+  curator?: boolean;
+  desc: string;
+  isButton?: boolean;
+  buttonText?: string;
+  children?: ReactNode;
+}
+
+const ContentHeader = ({
+  title,
+  curator,
+  desc,
+  isButton = false,
+  buttonText,
+  children,
+}: Props) => {
   return (
     <Container>
-      <MainWithSearchBar>
-        <TitleWithSponsor>
-          <TitleContainer>
-            <Title>Unsplash</Title>
-            <SubTitle>
-              The internet's source for visuals.
-              <br /> Powered by creators everywhere.
-            </SubTitle>
-          </TitleContainer>
-          <Sponsor>
-            <h2>Supported by</h2>
-            <BiCustomize />
-            <span>SQUARESPACE</span>
-          </Sponsor>
-        </TitleWithSponsor>
-        <SearchBarContainer>
-          <StyledSearchBar borderRadius="8px" />
-        </SearchBarContainer>
-      </MainWithSearchBar>
-      <AwardAndUpsellContainer>
+      <CategoryContainer>
+        <CategoryDesc>
+          <TextContainer>
+            <Title>{title}</Title>
+            {curator && <Curator>Curated by Unsplash</Curator>}
+            <Desc>{desc}</Desc>
+          </TextContainer>
+          {children}
+        </CategoryDesc>
+        {isButton ? (
+          <SubmitButton>
+            Submit to
+            <span>{buttonText}</span>
+          </SubmitButton>
+        ) : (
+          <SearchBarContainer>
+            <StyledSearchBar borderRadius="8px" />
+          </SearchBarContainer>
+        )}
+      </CategoryContainer>
+      <SecondBox>
         <Award>
           <TextArea>
             <h2>Unsplash Awards 2024</h2>
@@ -50,7 +67,7 @@ const MainHeader = () => {
           </TextArea>
           <button>Upgrade to Unsplash+</button>
         </UpsellContainer>
-      </AwardAndUpsellContainer>
+      </SecondBox>
     </Container>
   );
 };
@@ -58,21 +75,21 @@ const MainHeader = () => {
 const Container = styled.div`
   display: flex;
   align-items: center;
-
   width: 100%;
   height: 100%;
   gap: 24px;
 `;
 
-const MainWithSearchBar = styled.div`
+const CategoryContainer = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: start;
   width: 100%;
   height: 100%;
   gap: 10px;
 `;
 
-const TitleWithSponsor = styled.div`
+const CategoryDesc = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -82,7 +99,7 @@ const TitleWithSponsor = styled.div`
     flex-direction: column;
   }
 `;
-const TitleContainer = styled.div`
+const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -95,38 +112,40 @@ const Title = styled.h1`
   line-height: 1.2;
 `;
 
-const SubTitle = styled.span`
+const Curator = styled.span`
+  padding-block: 10px;
+  color: #767676;
+  font-weight: 500;
+`;
+
+const Desc = styled.span`
   padding: 4px 0;
   font-size: 1.125rem;
   line-height: 1.4;
+  white-space: pre-wrap;
 `;
 
-const Sponsor = styled.div`
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
-  padding: 8px 0;
-  gap: 6px;
-  h2 {
-    letter-spacing: 0.2px;
-    font-size: 12px;
-  }
+const SubmitButton = styled.button`
+  margin-top: 14px;
+  padding: 14px 18px;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: white;
+  background-color: black;
+
   span {
-    font-size: 12px;
     font-weight: 600;
-    letter-spacing: 1px;
-  }
-  @media (max-width: 1186px) {
-    justify-content: flex-start;
   }
 `;
 
 const SearchBarContainer = styled.div`
+  width: 100%;
   height: 54px;
 `;
 const StyledSearchBar = styled(SearchBar)``;
 
-const AwardAndUpsellContainer = styled.div`
+const SecondBox = styled.div`
   display: flex;
   align-items: center;
   gap: 24px;
@@ -143,7 +162,7 @@ const Award = styled.div`
   justify-content: center;
   height: 306px;
   width: 306px;
-  background-image: url("../../../../public/images/bay.png");
+  background-image: url("../../../public/images/bay.png");
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
@@ -199,4 +218,4 @@ const UpsellContainer = styled.div`
   }
 `;
 
-export default MainHeader;
+export default ContentHeader;
