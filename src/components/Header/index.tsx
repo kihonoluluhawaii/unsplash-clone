@@ -11,7 +11,7 @@ const Header = () => {
         <Logo>
           <RxGithubLogo />
         </Logo>
-        <SearchBar />
+        <SearchBar borderRadius="24px" />
         <Gnb>
           <Nav />
         </Gnb>
