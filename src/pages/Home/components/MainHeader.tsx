@@ -2,7 +2,6 @@ import styled from "@emotion/styled";
 import { TiPlusOutline } from "react-icons/ti";
 import SearchBar from "@/components/Header/components/HeaderTop/SearchBar.tsx";
 import { BiCustomize } from "react-icons/bi";
-import { MdPersonPinCircle } from "react-icons/md";
 import { AiFillAmazonCircle } from "react-icons/ai";
 
 const MainHeader = () => {
@@ -174,6 +173,7 @@ const UpsellContainer = styled.div`
   gap: 14px;
   border: 1px solid #ddd;
   height: 306px;
+  cursor: pointer;
   svg {
     width: 40px;
     height: 40px;
