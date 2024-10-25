@@ -3,7 +3,7 @@ import Nav from "@/components/Header/Nav.tsx";
 import { RxGithubLogo } from "react-icons/rx";
 import SearchBar from "@/components/Header/components/HeaderTop/SearchBar.tsx";
 import HeaderBottom from "@/components/Header/components/HeaderBottom";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -31,7 +31,7 @@ const HeaderTop = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 62px;
+  height: 62px;Ø
   padding-block: 11px;
   gap: 14px;
   color: #767676;
