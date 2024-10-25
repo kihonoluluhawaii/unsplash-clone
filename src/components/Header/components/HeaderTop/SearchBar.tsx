@@ -3,7 +3,11 @@ import { ChangeEvent, useRef, useState } from "react";
 import { IoSearch } from "react-icons/io5";
 import { TbCapture } from "react-icons/tb";
 
-const SearchBar = () => {
+interface Props {
+  borderRadius: string;
+}
+
+const SearchBar = ({ borderRadius }: Props) => {
   const [search, setSearch] = useState("");
   const inputRef = useRef(null);
 
@@ -12,7 +16,7 @@ const SearchBar = () => {
   };
 
   return (
-    <Container>
+    <Container borderRadius={borderRadius}>
       <div>
         <IoSearch />
       </div>
@@ -31,14 +35,14 @@ const SearchBar = () => {
   );
 };
 
-const Container = styled.div`
+const Container = styled.div<{ borderRadius: string }>`
   display: flex;
   align-items: center;
   flex-grow: 1;
   max-width: 1280px;
   height: 100%;
   background: #eee;
-  border-radius: 24px;
+  border-radius: ${({ borderRadius }) => borderRadius};
   padding: 0 14px;
 
   &:hover {
@@ -58,7 +62,11 @@ const Container = styled.div`
   }
 
   form {
+    display: flex;
+    align-items: center;
     width: 100%;
+    height: 100%;
+
     input {
       width: 100%;
       padding: 0 10px;
