@@ -21,7 +21,7 @@ const Container = styled.div`
     flex-direction: column;
     justify-content: flex-end;
     height: 100%;
-    padding-block: 56px;
+    padding-top: 56px;
   }
   h2 {
     font-size: 2.5rem;

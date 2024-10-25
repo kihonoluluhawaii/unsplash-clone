@@ -3,7 +3,7 @@ import { getTopics } from "@/services/topics.ts";
 
 export const useTopics = () => {
   return useQuery({
-    queryKey: ["topics"],
+    queryKey: ["Topic"],
     queryFn: () => getTopics(),
   });
 };

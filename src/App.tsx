@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import Layout from "@/layout/Layout.tsx";
 import Home from "@/pages/Home";
 import { Route, Routes } from "react-router-dom";
-import Topic from "src/pages/Topic";
+import Topic from "src/components/topics";
 import Illustrations from "@/pages/Illustrations";
 
 function App() {

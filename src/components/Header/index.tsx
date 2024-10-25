@@ -3,12 +3,14 @@ import Nav from "@/components/Header/Nav.tsx";
 import { RxGithubLogo } from "react-icons/rx";
 import SearchBar from "@/components/Header/components/HeaderTop/SearchBar.tsx";
 import HeaderBottom from "@/components/Header/components/HeaderBottom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const navigate = useNavigate();
   return (
     <Container>
       <HeaderTop>
-        <Logo>
+        <Logo onClick={() => navigate("/")}>
           <RxGithubLogo />
         </Logo>
         <SearchBar borderRadius="24px" />

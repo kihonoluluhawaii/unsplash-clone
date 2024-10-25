@@ -17,8 +17,15 @@ export interface ITopic {
   media_types: string[];
   status: string;
   owners: Owner[];
-  cover_photo: CoverPhoto;
+  cover_photo: ITopicPhoto;
   preview_photos: PreviewPhoto[];
+  top_contributors: {
+    name: string;
+    username: string;
+    profile_image: {
+      medium: string;
+    };
+  }[];
 }
 
 export interface Links {
@@ -75,7 +82,7 @@ export interface Social {
   paypal_email: any;
 }
 
-export interface CoverPhoto {
+export interface ITopicPhoto {
   id: string;
   slug: string;
   alternative_slugs: AlternativeSlugs;
