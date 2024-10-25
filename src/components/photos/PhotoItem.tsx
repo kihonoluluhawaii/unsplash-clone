@@ -1,8 +1,9 @@
 import styled from "@emotion/styled";
 import { IPhoto } from "@/models/photos.ts";
+import { ITopicPhoto } from "@/models/topics.ts";
 
 interface Props {
-  item: IPhoto;
+  item: IPhoto | ITopicPhoto;
 }
 const PhotoItem = ({ item }: Props) => {
   return (

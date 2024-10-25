@@ -1,24 +1,21 @@
 import { useParams } from "react-router-dom";
 import { useTopicsById } from "@/hooks/useTopicsById.ts";
-import Animals from "@/pages/Topic/Animals";
 import styled from "@emotion/styled";
+import TopicContent from "@/components/topics/TopicContent.tsx";
+import { useTopicPhotos } from "@/hooks/useTopicPhotos.ts";
 
 const Topic = () => {
   const { slug } = useParams();
   const { data } = useTopicsById(slug);
-  console.log("Fetched Data:", data);
+  const { data: photoData = [] } = useTopicPhotos(slug);
+  const bestPhoto = photoData?.[Math.floor(Math.random() * photoData.length)];
+  console.log("@@ best", bestPhoto);
 
-  switch (slug) {
-    case "animals":
-      return (
-        <Container>
-          <Animals data={data} />
-        </Container>
-      );
-
-    default:
-      return <div>Not found</div>;
-  }
+  return (
+    <Container>
+      <TopicContent data={data} photoData={photoData} bestPhoto={bestPhoto} />
+    </Container>
+  );
 };
 
 const Container = styled.div`

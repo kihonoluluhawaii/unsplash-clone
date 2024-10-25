@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { usePhotos } from "@/components/photos/hooks/usePhotos.ts";
+import { usePhotos } from "@/hooks/usePhotos.ts";
 import PhotoList from "@/components/photos/PhotoList.tsx";
 
 const Photos = () => {

@@ -10,6 +10,7 @@ const Home = () => {
         title="Unsplash"
         desc={`The internet's source for visuals. \nPowered by creators everywhere.`}
         isButton={false}
+        showHomeBox={true}
         children={
           <Sponsor>
             <h2>Supported by</h2>
@@ -18,7 +19,6 @@ const Home = () => {
           </Sponsor>
         }
       />
-
       <Photos />
     </Container>
   );
