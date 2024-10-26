@@ -21,6 +21,11 @@ export interface IPhoto {
   topic_submissions: TopicSubmissions;
   asset_type: string;
   user: User;
+  cover_photo: {
+    urls: {
+      regular: string;
+    };
+  };
 }
 
 export interface AlternativeSlugs {
