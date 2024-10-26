@@ -1,9 +1,10 @@
 import styled from "@emotion/styled";
 import Nav from "@/components/Header/Nav.tsx";
 import { RxGithubLogo } from "react-icons/rx";
-import SearchBar from "@/components/Header/components/HeaderTop/SearchBar.tsx";
+
 import HeaderBottom from "@/components/Header/components/HeaderBottom";
 import { useNavigate } from "react-router-dom";
+import SearchBar from "@/components/SearchBar.tsx";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ const Header = () => {
         <Logo onClick={() => navigate("/")}>
           <RxGithubLogo />
         </Logo>
-        <SearchBar borderRadius="24px" />
+        <SearchBar type={"round"} />
         <Gnb>
           <Nav />
         </Gnb>
@@ -23,16 +24,14 @@ const Header = () => {
   );
 };
 
-const Container = styled.div`
-  width: 100%;
-`;
+const Container = styled.div``;
 
 const HeaderTop = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 62px;Ø
-  padding-block: 11px;
+  height: 62px;
+  padding: 11px 20px;
   gap: 14px;
   color: #767676;
 `;

@@ -21,6 +21,7 @@ const Container = styled.div`
   align-items: center;
   gap: 30px;
   height: 56px;
+  padding: 0 20px;
   color: #767676;
   box-sizing: border-box;
 `;
