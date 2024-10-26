@@ -1,13 +1,13 @@
 import styled from "@emotion/styled";
+import cn from "classnames";
 import { ChangeEvent, useRef, useState } from "react";
 import { IoSearch } from "react-icons/io5";
 import { TbCapture } from "react-icons/tb";
 
 interface Props {
-  borderRadius: string;
+  type: string;
 }
-
-const SearchBar = ({ borderRadius }: Props) => {
+const SearchBar = ({ type }: Props) => {
   const [search, setSearch] = useState("");
   const inputRef = useRef(null);
 
@@ -16,7 +16,7 @@ const SearchBar = ({ borderRadius }: Props) => {
   };
 
   return (
-    <Container borderRadius={borderRadius}>
+    <Container className={cn("SearchBar", type)}>
       <div>
         <IoSearch />
       </div>
@@ -35,15 +35,23 @@ const SearchBar = ({ borderRadius }: Props) => {
   );
 };
 
-const Container = styled.div<{ borderRadius: string }>`
+const Container = styled.div`
   display: flex;
   align-items: center;
   flex-grow: 1;
   max-width: 1280px;
   height: 100%;
   background: #eee;
-  border-radius: ${({ borderRadius }) => borderRadius};
   padding: 0 14px;
+
+  &.round {
+    border-radius: 24px;
+  }
+
+  &.square {
+    height: 54px;
+    border-radius: 8px;
+  }
 
   &:hover {
     background: #ddd;

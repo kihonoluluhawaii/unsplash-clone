@@ -1,9 +1,10 @@
 import styled from "@emotion/styled";
 import { TiPlusOutline } from "react-icons/ti";
-import SearchBar from "@/components/Header/components/HeaderTop/SearchBar.tsx";
+
 import { AiFillAmazonCircle } from "react-icons/ai";
 import { ReactNode } from "react";
 import { ITopicPhoto } from "@/models/topics.ts";
+import SearchBar from "@/components/SearchBar.tsx";
 
 interface Props {
   title: string;
@@ -51,7 +52,7 @@ const ContentHeader = ({
           </SubmitButton>
         ) : (
           <SearchBarContainer>
-            <StyledSearchBar borderRadius="8px" />
+            <SearchBar type={"square"} />
           </SearchBarContainer>
         )}
       </CategoryContainer>
@@ -189,7 +190,6 @@ const SearchBarContainer = styled.div`
   width: 100%;
   height: 54px;
 `;
-const StyledSearchBar = styled(SearchBar)``;
 
 const ContentBoxWithImage = styled.div`
   display: flex;
