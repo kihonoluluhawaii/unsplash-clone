@@ -3,7 +3,7 @@ import { getTopicsById } from "@/services/topics.ts";
 
 export const useTopicsById = (slug?: string) => {
   return useQuery({
-    queryKey: ["Topic", slug],
+    queryKey: ["topic", slug],
     queryFn: () => getTopicsById(slug as string),
     enabled: !!slug,
   });

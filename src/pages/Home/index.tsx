@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
-import Photos from "@/components/photos";
 import ContentHeader from "@/components/ContentHeader";
 import { BiCustomize } from "react-icons/bi";
+import Photos from "@/components/photos";
 
 const Home = () => {
   return (

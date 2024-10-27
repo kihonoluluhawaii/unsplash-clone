@@ -31,7 +31,7 @@ const HeaderTop = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 62px;Ø
+  height: 62px;
   padding-block: 11px;
   gap: 14px;
   color: #767676;
