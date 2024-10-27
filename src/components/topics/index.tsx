@@ -9,11 +9,17 @@ const Topic = () => {
   const { data } = useTopicsById(slug);
   const { data: photoData = [] } = useTopicPhotos(slug);
   const bestPhoto = photoData?.[Math.floor(Math.random() * photoData.length)];
-  console.log("@@ best", bestPhoto);
 
   return (
     <Container>
-      <TopicContent data={data} photoData={photoData} bestPhoto={bestPhoto} />
+      <TopicContent
+        title={data?.title}
+        desc={data?.description}
+        buttonText={data?.title}
+        contributors={data?.top_contributors}
+        photoData={photoData}
+        bestPhoto={bestPhoto}
+      />
     </Container>
   );
 };
