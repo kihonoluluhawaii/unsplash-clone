@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import PhotoItem from "@/components/photos/PhotoItem.tsx";
+import PhotosItem from "@/components/PhotosList/PhotosItem.tsx";
 import { ITopicPhoto } from "@/models/topics.ts";
 
 interface Props {
@@ -12,7 +12,7 @@ const TopicPhotoList = ({ data = [] }: Props) => {
       {data.map((item) => {
         return (
           <Col key={item.id}>
-            <PhotoItem item={item} />
+            <PhotosItem item={item} />
           </Col>
         );
       })}

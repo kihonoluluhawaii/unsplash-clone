@@ -1,3 +1,5 @@
+import { IPhoto } from "@/models/photos.ts";
+
 export interface ITopic {
   id: string;
   slug: string;
@@ -17,7 +19,7 @@ export interface ITopic {
   media_types: string[];
   status: string;
   owners: Owner[];
-  cover_photo: ITopicPhoto;
+  cover_photo: IPhoto;
   preview_photos: PreviewPhoto[];
   top_contributors: {
     name: string;

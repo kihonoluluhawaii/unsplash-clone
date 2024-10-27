@@ -63,3 +63,7 @@ button, input, label {
   border: 0;
   padding: 0;
 }
+
+svg {
+  flex-shrink: 0;
+}

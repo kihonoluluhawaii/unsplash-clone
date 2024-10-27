@@ -6,7 +6,7 @@ interface Props {
   data?: IPhoto[];
 }
 
-const PhotoList = ({ data = [] }: Props) => {
+const PhotosList = ({ data = [] }: Props) => {
   return (
     <Container>
       {data.map((item) => {
@@ -27,4 +27,4 @@ const Container = styled.div`
 const Col = styled.div`
   margin-bottom: 24px;
 `;
-export default PhotoList;
+export default PhotosList;

@@ -1,6 +1,4 @@
 import styled from "@emotion/styled";
-import ContentHeader from "@/components/ContentHeader";
-import { BiCustomize } from "react-icons/bi";
 import Photos from "@/components/photos";
 import HomeConTentHeader from "@/pages/Home/HomeContentHeader.tsx";
 

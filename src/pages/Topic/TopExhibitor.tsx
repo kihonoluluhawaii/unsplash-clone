@@ -1,13 +1,13 @@
 import styled from "@emotion/styled";
 
 interface Props {
-  contributors?: Array<{
+  contributors?: {
     name: string;
     username: string;
     profile_image: {
       medium: string;
     };
-  }>;
+  }[];
 }
 const TopExhibitor = ({ contributors }: Props) => {
   return (
