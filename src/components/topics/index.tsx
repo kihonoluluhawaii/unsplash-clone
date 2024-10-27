@@ -12,7 +12,14 @@ const Topic = () => {
 
   return (
     <Container>
-      <TopicContent data={data} photoData={photoData} bestPhoto={bestPhoto} />
+      <TopicContent
+        title={data?.title}
+        desc={data?.description}
+        buttonText={data?.title}
+        contributors={data?.top_contributors}
+        photoData={photoData}
+        bestPhoto={bestPhoto}
+      />
     </Container>
   );
 };
