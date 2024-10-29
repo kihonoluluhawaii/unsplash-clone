@@ -1,16 +1,20 @@
 import styled from "@emotion/styled";
-import { ITopicPhoto } from "@/models/topics.ts";
+import { IPhoto } from "@/models/photos.ts";
+
 interface Props {
-  bestPhoto: ITopicPhoto;
+  coverPhoto: IPhoto;
 }
-const Recommend = ({ bestPhoto }: Props) => {
+const Recommend = ({ coverPhoto }: Props) => {
   return (
     <Container>
       <div>
-        <img src={bestPhoto?.urls?.regular} alt={bestPhoto?.alt_description} />
+        <img
+          src={coverPhoto?.urls?.regular}
+          alt={coverPhoto?.alt_description}
+        />
         <TextOverlay>
           <h2>Featured</h2>
-          <span>{bestPhoto?.user?.name}</span>
+          <span>{coverPhoto?.user?.name}</span>
         </TextOverlay>
       </div>
     </Container>

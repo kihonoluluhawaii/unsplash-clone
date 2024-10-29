@@ -2,20 +2,25 @@ import styled from "@emotion/styled";
 import Layout from "@/layout/Layout.tsx";
 import Home from "@/pages/Home";
 import { Route, Routes } from "react-router-dom";
-import Topic from "src/components/topics";
-import Illustrations from "@/pages/Illustrations";
+
+import { lazy, Suspense } from "react";
+import NotFound from "@/pages/NotFound";
+const Search = lazy(() => import("@/pages/Search"));
+const Topic = lazy(() => import("@/pages/Topic"));
 
 function App() {
   return (
     <Container>
-      <Layout>
-        <Routes>
-          <Route path={"/"} element={<Home />}></Route>
-          <Route path={"/illustrations"} element={<Illustrations />}></Route>
-          {/*<Route path={"/"} element={<Home />}></Route>*/}
-          <Route path={"/topics/:slug"} element={<Topic />} />
-        </Routes>
-      </Layout>
+      <Suspense fallback={null}>
+        <Layout>
+          <Routes>
+            <Route path={"/"} element={<Home />} />
+            <Route path={"/topics/:slug"} element={<Topic />} />
+            <Route path={"/search/:category/:query"} element={<Search />} />
+            <Route path={"*"} element={<NotFound />} />
+          </Routes>
+        </Layout>
+      </Suspense>
     </Container>
   );
 }

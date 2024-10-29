@@ -3,7 +3,7 @@ import { getTopicPhotos } from "@/services/topics.ts";
 
 export const useTopicPhotos = (slug?: string) => {
   return useQuery({
-    queryKey: ["topics", slug],
+    queryKey: ["Topic", slug],
     queryFn: () => getTopicPhotos(slug as string),
     enabled: !!slug,
   });

@@ -3,9 +3,9 @@ import { httpClient } from "@/services/httpClient.ts";
 export const getCollections = async () => {
   const { data } = await httpClient({
     method: "get",
-    url: `collections/`,
+    url: `/collections`,
     params: {
-      per_page: 50,
+      per_page: 10,
     },
   });
 
