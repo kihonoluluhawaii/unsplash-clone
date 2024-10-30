@@ -1,32 +1,14 @@
 import styled from "@emotion/styled";
-import { ITopicPhoto } from "@/models/topics.ts";
-import TopicPhotoList from "@/components/topics/TopicPhotoList.tsx";
-import TopExhibitor from "@/components/topics/TopExhibitor.tsx";
-import Recommend from "@/components/topics/Recommend.tsx";
+import TopExhibitor from "@/pages/Topic/TopExhibitor.tsx";
+import { useParams } from "react-router-dom";
+import { useTopicsById } from "@/hooks/useTopicsById.ts";
+import Recommend from "@/pages/Topic/Recommend.tsx";
 
-interface Props {
-  photoData: ITopicPhoto[];
-  bestPhoto: ITopicPhoto;
-  title: string;
-  desc: string;
-  buttonText?: string;
-  contributors?: Array<{
-    name: string;
-    username: string;
-    profile_image: {
-      medium: string;
-    };
-  }>;
-}
-
-const TopicContent = ({
-  title,
-  desc,
-  buttonText,
-  photoData,
-  contributors,
-  bestPhoto,
-}: Props) => {
+const TopicContent = () => {
+  const { slug } = useParams();
+  const { data } = useTopicsById(slug);
+  if (!data) return;
+  const { title, description, top_contributors, cover_photo } = data;
   return (
     <Container>
       <ContentContainer>
@@ -34,16 +16,15 @@ const TopicContent = ({
           <TextContainer>
             <div className="title">{title}</div>
             <div className="info">Curated by Unsplash</div>
-            <div className="description">{desc}</div>
+            <div className="description">{description}</div>
             <button>
-              Submit to <span>{buttonText}</span>
+              Submit to <span>{title}</span>
             </button>
           </TextContainer>
         </Overview>
-        <TopExhibitor contributors={contributors} />
-        <Recommend bestPhoto={bestPhoto} />
+        <TopExhibitor contributors={top_contributors} />
+        <Recommend coverPhoto={cover_photo} />
       </ContentContainer>
-      <TopicPhotoList data={photoData} />
     </Container>
   );
 };

@@ -1,11 +1,10 @@
 import styled from "@emotion/styled";
 import { IPhoto } from "@/models/photos.ts";
-import { ITopicPhoto } from "@/models/topics.ts";
 
 interface Props {
-  item: IPhoto | ITopicPhoto;
+  item: IPhoto;
 }
-const PhotoItem = ({ item }: Props) => {
+const PhotosItem = ({ item }: Props) => {
   return (
     <Container>
       <img src={item.urls.regular} alt={item.alt_description} />
@@ -22,4 +21,4 @@ const Container = styled.div`
   }
 `;
 
-export default PhotoItem;
+export default PhotosItem;

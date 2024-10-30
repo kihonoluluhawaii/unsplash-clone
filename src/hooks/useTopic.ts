@@ -1,9 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
-import { getTopics } from "@/services/topics.ts";
+import { getTopics, ITopicsParams } from "@/services/topics.ts";
 
-export const useTopics = () => {
+export const useTopics = (params: ITopicsParams = {}) => {
   return useQuery({
-    queryKey: ["topic"],
-    queryFn: () => getTopics(),
+    queryKey: [
+      "topic",
+      params.page,
+      params.per_page,
+      params.ids,
+      params.order_by,
+    ],
+    queryFn: () => getTopics(params),
   });
 };

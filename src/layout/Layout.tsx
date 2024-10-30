@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import Header from "@/components/Header";
 import { ReactNode } from "react";
+import Lnb from "@/components/Lnb";
 
 interface Props {
   children: ReactNode;
@@ -10,6 +11,7 @@ const Layout = ({ children }: Props) => {
   return (
     <Container>
       <Header />
+      <Lnb />
       <Divider />
       {children}
     </Container>

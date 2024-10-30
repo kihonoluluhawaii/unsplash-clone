@@ -1,16 +1,16 @@
+import { useParams } from "react-router-dom";
 import styled from "@emotion/styled";
-import HomeConTentHeader from "@/pages/Home/HomeContentHeader.tsx";
+import TopicContent from "@/pages/Topic/TopicContent.tsx";
+import { useTopicPhotos } from "@/hooks/useTopicPhotos.ts";
 import PhotosList from "@/components/photos/PhotosList.tsx";
-import { usePhotos } from "@/hooks/usePhotos.ts";
 
-const Home = () => {
-  const { data } = usePhotos();
+const Topic = () => {
+  const { slug } = useParams();
+  const { data } = useTopicPhotos(slug);
+
   return (
     <Container>
-      <HomeConTentHeader
-        title="Unsplash"
-        desc={`The internet's source for visuals. \nPowered by creators everywhere.`}
-      />
+      <TopicContent />
       <PhotosList data={data} />
     </Container>
   );
@@ -25,5 +25,4 @@ const Container = styled.div`
   height: 306px;
   margin-block: 56px;
 `;
-
-export default Home;
+export default Topic;

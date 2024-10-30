@@ -1,18 +1,18 @@
 import styled from "@emotion/styled";
-import PhotoItem from "@/components/photos/PhotoItem.tsx";
-import { ITopicPhoto } from "@/models/topics.ts";
+import { IPhoto } from "@/models/photos.ts";
+import PhotosItem from "@/components/photos/PhotosItem.tsx";
 
 interface Props {
-  data: ITopicPhoto[];
+  data?: IPhoto[];
 }
 
-const TopicPhotoList = ({ data = [] }: Props) => {
+const PhotosList = ({ data = [] }: Props) => {
   return (
     <Container>
       {data.map((item) => {
         return (
           <Col key={item.id}>
-            <PhotoItem item={item} />
+            <PhotosItem item={item} />
           </Col>
         );
       })}
@@ -20,6 +20,7 @@ const TopicPhotoList = ({ data = [] }: Props) => {
   );
 };
 const Container = styled.div`
+  margin-top: 56px;
   column-count: 3;
   column-gap: 24px;
 `;
@@ -27,4 +28,4 @@ const Container = styled.div`
 const Col = styled.div`
   margin-bottom: 24px;
 `;
-export default TopicPhotoList;
+export default PhotosList;

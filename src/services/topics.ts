@@ -1,20 +1,25 @@
 import { httpClient } from "@/services/httpClient.ts";
-import { ITopic, ITopicPhoto } from "@/models/topics.ts";
+import { ITopic } from "@/models/topics.ts";
+import { IPhoto } from "@/models/photos.ts";
 
-export const getTopics = async () => {
+export interface ITopicsParams {
+  ids?: string;
+  page?: number;
+  per_page?: number;
+  order_by?: "featured" | "latest" | "oldest" | "position";
+}
+export const getTopics = async (params: ITopicsParams = {}) => {
   const { data } = await httpClient<ITopic[]>({
     method: "get",
     url: `/topics`,
-    params: {
-      per_page: 30,
-    },
+    params,
   });
 
   return data;
 };
 
 export const getTopicsById = async (slug: string) => {
-  const { data } = await httpClient({
+  const { data } = await httpClient<ITopic>({
     method: "get",
     url: `/topics/${slug}`,
   });
@@ -23,7 +28,7 @@ export const getTopicsById = async (slug: string) => {
 };
 
 export const getTopicPhotos = async (slug: string) => {
-  const { data } = await httpClient<ITopicPhoto[]>({
+  const { data } = await httpClient<IPhoto[]>({
     method: "get",
     url: `/topics/${slug}/photos`,
     params: {

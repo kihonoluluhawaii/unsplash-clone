@@ -1,8 +1,8 @@
-import SearchBar from "@/components/SearchBar.tsx";
 import { AiFillAmazonCircle } from "react-icons/ai";
 import { TiPlusOutline } from "react-icons/ti";
 import styled from "@emotion/styled";
 import { BiCustomize } from "react-icons/bi";
+import SearchBox from "@/components/SearchBox";
 
 interface Props {
   title: string;
@@ -25,7 +25,7 @@ const HomeConTentHeader = ({ title, desc }: Props) => {
           </Sponsor>
         </CategoryDesc>
         <SearchBarContainer>
-          <SearchBar type={"square"} />
+          <SearchBox type={"square"} />
         </SearchBarContainer>
       </CategoryContainer>
       <ContentBoxWithImage>

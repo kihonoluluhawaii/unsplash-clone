@@ -1,54 +1,40 @@
 import styled from "@emotion/styled";
 import Nav from "@/components/Header/Nav.tsx";
-import { RxGithubLogo } from "react-icons/rx";
-
-import HeaderBottom from "@/components/Header/components/HeaderBottom";
-import { useNavigate } from "react-router-dom";
-import SearchBar from "@/components/SearchBar.tsx";
+import { Link } from "react-router-dom";
+import { IconLogo } from "@/components/Icons";
+import SearchBox from "@/components/SearchBox";
 
 const Header = () => {
-  const navigate = useNavigate();
   return (
     <Container>
-      <HeaderTop>
-        <Logo onClick={() => navigate("/")}>
-          <RxGithubLogo />
-        </Logo>
-        <SearchBar type={"round"} />
-        <Gnb>
-          <Nav />
-        </Gnb>
-      </HeaderTop>
-      <HeaderBottom />
+      <Logo
+        to={"/"}
+        aria-label={"브랜드 홈 링크"}
+        aria-describedby={"브랜드 홈 링크"}
+      >
+        <IconLogo />
+      </Logo>
+      <SearchBox type={"round"} />
+      <Nav />
     </Container>
   );
 };
 
-const Container = styled.div``;
-
-const HeaderTop = styled.div`
+const Container = styled.div`
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  height: 62px;
   padding: 11px 20px;
-  gap: 14px;
-  color: #767676;
+  gap: 16px;
+  background-color: #fff;
 `;
 
-const Logo = styled.div`
-  min-width: 40px;
-  cursor: pointer;
-  color: black;
-  svg {
-    width: 100%;
-    height: 100%;
-  }
-`;
-
-const Gnb = styled.div`
+const Logo = styled(Link)`
   display: flex;
-  align-items: center;
+  width: 28px;
+  height: 28px;
+  svg {
+    flex-shrink: 0;
+  }
 `;
 
 export default Header;
