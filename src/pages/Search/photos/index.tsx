@@ -4,8 +4,7 @@ import PhotosList from "@/components/photos/PhotosList.tsx";
 
 const SearchPhotos = () => {
   const { data } = useSearchPhotos();
-  const results = data;
-  console.log("@@ results", results);
+
   return (
     <Container>
       <PhotosList data={data?.results} />

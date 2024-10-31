@@ -27,5 +27,6 @@ const Container = styled.div`
 
 const Col = styled.div`
   margin-bottom: 24px;
+  cursor: pointer;
 `;
 export default PhotosList;
