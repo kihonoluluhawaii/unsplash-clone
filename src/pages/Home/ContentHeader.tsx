@@ -9,7 +9,7 @@ interface Props {
   desc: string;
 }
 
-const HomeConTentHeader = ({ title, desc }: Props) => {
+const ContentHeader = ({ title, desc }: Props) => {
   return (
     <Container>
       <CategoryContainer>
@@ -206,4 +206,4 @@ const Desc = styled.span`
   line-height: 1.4;
   white-space: pre-wrap;
 `;
-export default HomeConTentHeader;
+export default ContentHeader;

@@ -1,13 +1,14 @@
 import styled from "@emotion/styled";
-import HomeConTentHeader from "@/pages/Home/HomeContentHeader.tsx";
+import ContentHeader from "@/pages/Home/ContentHeader.tsx";
 import PhotosList from "@/components/photos/PhotosList.tsx";
 import { usePhotos } from "@/hooks/usePhotos.ts";
 
 const Home = () => {
   const { data } = usePhotos();
+
   return (
     <Container>
-      <HomeConTentHeader
+      <ContentHeader
         title="Unsplash"
         desc={`The internet's source for visuals. \nPowered by creators everywhere.`}
       />
