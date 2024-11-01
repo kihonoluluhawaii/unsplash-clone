@@ -1,17 +1,15 @@
 import styled from "@emotion/styled";
 import { IPhoto } from "@/models/photos.ts";
 
-import { IconLeft, IconLike, IconPlus } from "@/components/Icons";
-import Modal from "@/components/Modal/index.tsx";
+import {IconLeft, IconLike, IconPlus} from "@/components/Icons";
 
 interface Props {
   item: IPhoto;
-  isOpen: boolean;
   onClose: () => void;
 }
-const PhotoDetailModal = ({ item, isOpen, onClose }: Props) => {
+const PhotoDetailModal = ({ item }: Props) => {
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
+
       <ModalContainer>
         <Header>
           <User>
@@ -38,7 +36,7 @@ const PhotoDetailModal = ({ item, isOpen, onClose }: Props) => {
         </Header>
         <img src={item.urls.regular} alt={item.alt_description} />
       </ModalContainer>
-    </Modal>
+
   );
 };
 
@@ -113,4 +111,6 @@ const LikeAndAddContainer = styled.div`
 const Like = styled.button``;
 const Download = styled.button``;
 const Add = styled.button``;
+
+
 export default PhotoDetailModal;

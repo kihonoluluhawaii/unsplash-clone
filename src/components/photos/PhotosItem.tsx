@@ -1,20 +1,26 @@
 import styled from "@emotion/styled";
 import { IPhoto } from "@/models/photos.ts";
-import useModal from "@/hooks/useModal.ts";
 import PhotoDetailModal from "@/components/Modal/PhotoDetailModal.tsx";
+import {useModal} from "@/components/ModalLayer";
 
 interface Props {
   item: IPhoto;
 }
 const PhotosItem = ({ item }: Props) => {
-  const { isOpen, open, close } = useModal();
+  const { openModal, closeModal } = useModal();
+
+
+  const handlePhotoItemClick = () => {
+    openModal(<PhotoDetailModal  onClose={closeModal} item={item} />)
+  }
+
   return (
     <>
-      <Container onClick={open}>
+      <Container onClick={handlePhotoItemClick}>
         <img src={item.urls.regular} alt={item.alt_description} />
       </Container>
 
-      <PhotoDetailModal isOpen={isOpen} onClose={close} item={item} />
+
     </>
   );
 };
