@@ -35,6 +35,7 @@ const Container = styled.div`
   overflow: hidden;
   color: #767676;
   box-sizing: border-box;
+  margin-bottom: 46px;
 `;
 
 const NavLink = styled(Link)`

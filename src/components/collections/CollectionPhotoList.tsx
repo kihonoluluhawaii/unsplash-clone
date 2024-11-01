@@ -1,9 +1,10 @@
 import styled from "@emotion/styled";
 import CollectionPhotoItem from "@/components/collections/CollectionPhotoItem.tsx";
-import { IPhoto } from "@/models/photos.ts";
+import CollectionDescription from "@/components/collections/CollectionDescription.tsx";
+import { Result } from "@/models/search.ts";
 
 interface Props {
-  data?: IPhoto[];
+  data?: Result[];
 }
 const CollectionPhotoList = ({ data = [] }: Props) => {
   return (
@@ -12,6 +13,7 @@ const CollectionPhotoList = ({ data = [] }: Props) => {
         return (
           <Col key={item.id}>
             <CollectionPhotoItem item={item} />
+            <CollectionDescription item={item} />
           </Col>
         );
       })}

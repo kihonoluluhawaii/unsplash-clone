@@ -1,35 +1,23 @@
 import styled from "@emotion/styled";
-import { IPhoto } from "@/models/photos.ts";
-import { PreviewPhoto } from "@/models/topics.ts";
+import { Result } from "@/models/search.ts";
 
 interface Props {
-  item: PreviewPhoto;
+  item: Result;
 }
 const CollectionPhotoItem = ({ item }: Props) => {
   const photos = item?.preview_photos?.slice(0, 3);
 
   return (
     <Container>
-      <CardList>
-        <Card>
-          <BigImage>
-            <img
-              src={photos[0]?.urls.regular}
-              alt={photos[0]?.alt_description}
-            />
-          </BigImage>
-          <SmallImage>
-            <img
-              src={photos[1]?.urls.regular}
-              alt={photos[1]?.alt_description}
-            />
-            <img
-              src={photos[2]?.urls.regular}
-              alt={photos[2]?.alt_description}
-            />
-          </SmallImage>
-        </Card>
-      </CardList>
+      <Card>
+        <BigImage>
+          <img src={photos[0]?.urls.regular} alt={photos[0]?.id} />
+        </BigImage>
+        <SmallImage>
+          <img src={photos[1]?.urls.regular} alt={photos[1]?.id} />
+          <img src={photos[2]?.urls.regular} alt={photos[2]?.id} />
+        </SmallImage>
+      </Card>
     </Container>
   );
 };
@@ -37,13 +25,10 @@ const CollectionPhotoItem = ({ item }: Props) => {
 const Container = styled.div`
   display: flex;
   justify-content: center;
-  width: 100%;
-`;
-
-const CardList = styled.div`
-  width: 400px; 
-  height: 290px; 
+  width: 400px;
+  height: 290px;
   overflow: hidden;
+  border-radius: 8px;
 `;
 
 const Card = styled.div`
@@ -71,9 +56,10 @@ const SmallImage = styled.div`
   grid-template-rows: 1fr 1fr;
   gap: 2px;
   height: 100%;
-
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
   img {
-    width: 144px;
+    width: 100%;
     height: 144px;
     object-fit: cover;
   }
