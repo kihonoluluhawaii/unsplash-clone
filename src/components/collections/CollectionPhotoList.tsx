@@ -20,11 +20,10 @@ const CollectionPhotoList = ({ data = [] }: Props) => {
 };
 
 const Container = styled.div`
-  column-count: 3;
-  column-gap: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
 `;
 
-const Col = styled.div`
-  margin-bottom: 24px;
-`;
+const Col = styled.div``;
 export default CollectionPhotoList;

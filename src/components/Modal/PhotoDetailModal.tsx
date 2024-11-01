@@ -1,7 +1,8 @@
 import styled from "@emotion/styled";
 import { IPhoto } from "@/models/photos.ts";
-import Modal from "@/components/Modal/index.tsx";
+
 import { IconLeft, IconLike, IconPlus } from "@/components/Icons";
+import Modal from "@/components/Modal/index.tsx";
 
 interface Props {
   item: IPhoto;

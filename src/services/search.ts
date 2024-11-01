@@ -24,9 +24,18 @@ interface ISearchParams {
 }
 
 export const searchPhotos = async (params: ISearchParams) => {
-  const { data } = await httpClient<ISearchResponse[]>({
+  const { data } = await httpClient<ISearchResponse>({
     method: "get",
     url: "/search/photos",
+    params,
+  });
+  return data;
+};
+
+export const searchCollections = async (params: ISearchParams) => {
+  const { data } = await httpClient<ISearchResponse>({
+    method: "get",
+    url: "/search/collections",
     params,
   });
   return data;
