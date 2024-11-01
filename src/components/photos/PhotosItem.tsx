@@ -8,7 +8,6 @@ interface Props {
 }
 const PhotosItem = ({ item }: Props) => {
   const { isOpen, open, close } = useModal();
-  console.log("@@ item", item);
   return (
     <>
       <Container onClick={open}>

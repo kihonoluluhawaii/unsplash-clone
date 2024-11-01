@@ -39,7 +39,9 @@ const Search = () => {
   const Component = SearchComponentsMap[category];
   return (
     <Container>
-      <Title>{query}</Title>
+      <Title>
+        {query ? query.charAt(0).toUpperCase() + query.slice(1) : ""}
+      </Title>
       <SearchRelated />
       <Component />
     </Container>
@@ -53,7 +55,9 @@ const Container = styled.div`
 `;
 
 const Title = styled.div`
-  font-size: 20px;
+  font-size: 28px;
+  font-weight: 800;
+  margin-block: 30px;
 `;
 
 export default Search;

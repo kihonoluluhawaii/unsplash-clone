@@ -14,8 +14,8 @@ function App() {
       <Suspense fallback={null}>
         <Layout>
           <Routes>
-            <Route path={"/"} element={<Home />} />
-            <Route path={"/topics/:slug"} element={<Topic />} />
+            {/*<Route path={"/"} element={<Home />} />*/}
+            {/*<Route path={"/topics/:slug"} element={<Topic />} />*/}
             <Route path={"/search/:category/:query"} element={<Search />} />
             <Route path={"*"} element={<NotFound />} />
           </Routes>

@@ -20,7 +20,7 @@ const SearchRelated = () => {
     <Container>
       {SEARCH_RELATED.map(({ title }) => (
         <NavLink key={title} to={`/search/${category}/${title}`}>
-          {title}
+          {title.charAt(0).toUpperCase() + title.slice(1)}
         </NavLink>
       ))}
     </Container>
@@ -31,7 +31,8 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   gap: 30px;
-
+  max-width: 1300px;
+  overflow: hidden;
   color: #767676;
   box-sizing: border-box;
 `;
