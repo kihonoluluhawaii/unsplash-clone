@@ -1,91 +1,85 @@
-import {createContext, ReactNode, useCallback, useContext, useState} from "react";
+import React, { createContext, ReactNode, useCallback, useState } from "react";
 import cn from "classnames";
-import {IconLeft, IconX} from "@/components/Icons";
+import { IconLeft, IconX } from "@/components/Icons";
 import styled from "@emotion/styled";
 
 interface IModalOptions {
-  size?: string
+  size?: string;
 }
 
 interface IModal {
-  el: ReactNode,
-  options?: IModalOptions
+  el: ReactNode;
+  options?: IModalOptions;
 }
 
 interface IModalContext {
-  modals: IModal[],
+  modals: IModal[];
   openModal: (el: ReactNode, options?: IModalOptions) => void;
   closeModal: () => void;
 }
 
-export const ModalContext = createContext<IModalContext | null>(null)
+export const ModalContext = createContext<IModalContext | null>(null);
 
 interface Props {
-  children: ReactNode
+  children: ReactNode;
 }
 
-const ModalLayer = ({children}: Props) => {
-  const [modals, setModals] = useState<IModal[]>([])
+const ModalLayer = ({ children }: Props) => {
+  const [modals, setModals] = useState<IModal[]>([]);
 
-  const openModal = useCallback((el: ReactNode, options?: IModalOptions) => {
-    setModals([
-      ...modals,
-      {
-        el,
-        options
-      }
-    ])
-  }, [modals])
+  const openModal = useCallback(
+    (el: ReactNode, options?: IModalOptions) => {
+      setModals([
+        ...modals,
+        {
+          el,
+          options,
+        },
+      ]);
+    },
+    [modals],
+  );
 
   const closeModal = useCallback(() => {
-    const nextModals = [...modals]
-    nextModals.pop()
-    setModals(nextModals)
-  }, [modals])
+    const nextModals = [...modals];
+    nextModals.pop();
+    setModals(nextModals);
+  }, [modals]);
+
+  const handleModalInside = (e: React.MouseEvent) => {
+    e.stopPropagation();
+  };
 
   return (
-    <ModalContext.Provider value={{
-      modals,
-      openModal,
-      closeModal
-    }}>{children}
+    <ModalContext.Provider
+      value={{
+        modals,
+        openModal,
+        closeModal,
+      }}
+    >
+      {children}
 
-      {
-        modals.map((modal) => (
-          <Container className={cn("ModalContainer")} onClick={closeModal}>
-            <Box>
-              <IconX />
-              <Overlay />
-              <ControlBox>
-                <PrevButton>
-                  <IconLeft />
-                </PrevButton>
-                <Content>
-                  {modal.el}
-                </Content>
-                <NextButton>
-                  <IconLeft />
-                </NextButton>
-              </ControlBox>
-            </Box>
-          </Container>
-        ))
-      }
+      {modals.map((modal) => (
+        <Container className={cn("ModalContainer")} onClick={closeModal}>
+          <Box>
+            <IconX />
+            <Overlay />
+            <ControlBox onClick={handleModalInside}>
+              <PrevButton>
+                <IconLeft />
+              </PrevButton>
+              <Content>{modal.el}</Content>
+              <NextButton>
+                <IconLeft />
+              </NextButton>
+            </ControlBox>
+          </Box>
+        </Container>
+      ))}
     </ModalContext.Provider>
   );
 };
-
-export const useModal = () => {
-
-  const values = useContext(ModalContext)
-  if(values === null) {
-    throw new Error("useModal 은 ModalContext.Provider 내부에서 사용 가능합니다")
-  }
-
-  return values
-}
-
-
 
 const Container = styled.div`
   position: fixed;
@@ -110,7 +104,9 @@ const Box = styled.div`
     margin: 10px;
     cursor: pointer;
     z-index: 1;
-  }
+    &:hover {
+      color: #ddd;
+    }
 `;
 
 const Overlay = styled.div`
@@ -120,6 +116,7 @@ const Overlay = styled.div`
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
+  cursor: zoom-out;
 `;
 
 const ControlBox = styled.div`
@@ -155,4 +152,4 @@ const Content = styled.div`
   overflow: hidden;
 `;
 
-export default ModalLayer
+export default ModalLayer;
