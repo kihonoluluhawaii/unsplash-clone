@@ -8,15 +8,17 @@ import React from "react";
 
 interface Props {
   item: IPhoto;
-  onClose: () => void;
+  onClose: (data?: unknown) => void;
 }
 
-const PhotoDetailModal = ({ item }: Props) => {
+const PhotoDetailModal = ({ item, onClose }: Props) => {
   const { openModal, closeModal } = useModal();
+  const data = { isAgree: true };
 
   const handleImageClick = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
-    openModal(<FullScreenModal onClose={closeModal} item={item} />);
+    onClose(data);
+    // openModal(<FullScreenModal onClose={() => closeModal(data)} item={item} />);
   };
 
   return (

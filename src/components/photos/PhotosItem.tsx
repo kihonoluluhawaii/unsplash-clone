@@ -9,8 +9,13 @@ interface Props {
 const PhotosItem = ({ item }: Props) => {
   const { openModal, closeModal } = useModal();
 
-  const handlePhotoItemClick = () => {
-    openModal(<PhotoDetailModal onClose={closeModal} item={item} />);
+  const handlePhotoItemClick = async () => {
+    const result = await openModal((resolve) => (
+      <PhotoDetailModal onClose={() => closeModal(true)} item={item} />
+    ));
+    if (result) {
+      console.log("@@ result", result);
+    }
   };
 
   return (
