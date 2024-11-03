@@ -1,52 +1,66 @@
 import styled from "@emotion/styled";
 import { IPhoto } from "@/models/photos.ts";
 
-import {IconLeft, IconLike, IconPlus} from "@/components/Icons";
+import { IconLeft, IconLike, IconPlus } from "@/components/Icons";
+import { useModal } from "@/hooks/useModal.ts";
+import FullScreenModal from "@/components/Modal/FullScreenModal.tsx";
+import React from "react";
 
 interface Props {
   item: IPhoto;
   onClose: () => void;
 }
+
 const PhotoDetailModal = ({ item }: Props) => {
+  const { openModal, closeModal } = useModal();
+
+  const handleImageClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    openModal(<FullScreenModal onClose={closeModal} item={item} />);
+  };
+
   return (
-
-      <ModalContainer>
-        <Header>
-          <User>
-            <img
-              src={item.user.profile_image?.medium}
-              alt={item.alt_description}
-            />
-            <UserInfo>
-              <span>{item.user.name}</span>
-              <p>{item.user.username}</p>
-            </UserInfo>
-          </User>
-          <LikeAndAddContainer>
-            <Like>
-              <IconLike />
-            </Like>
-            <Add>
-              <IconPlus />
-            </Add>
-            <Download>
-              <IconLeft />
-            </Download>
-          </LikeAndAddContainer>
-        </Header>
-        <img src={item.urls.regular} alt={item.alt_description} />
-      </ModalContainer>
-
+    <Container>
+      <Header>
+        <User>
+          <img
+            src={item.user.profile_image?.medium}
+            alt={item.alt_description}
+          />
+          <UserInfo>
+            <span>{item.user.name}</span>
+            <p>{item.user.username}</p>
+          </UserInfo>
+        </User>
+        <LikeAndAddContainer>
+          <Like>
+            <IconLike />
+          </Like>
+          <Add>
+            <IconPlus />
+          </Add>
+          <Download>
+            <IconLeft />
+          </Download>
+        </LikeAndAddContainer>
+      </Header>
+      <img
+        src={item.urls.regular}
+        alt={item.alt_description}
+        onClick={handleImageClick}
+      />
+    </Container>
   );
 };
 
-const ModalContainer = styled.div`
+const Container = styled.div`
   color: black;
   padding: 20px;
   height: 100%;
 
   > img {
     max-height: 760px;
+    cursor: zoom-in;
   }
 `;
 const Header = styled.div`
@@ -111,6 +125,5 @@ const LikeAndAddContainer = styled.div`
 const Like = styled.button``;
 const Download = styled.button``;
 const Add = styled.button``;
-
 
 export default PhotoDetailModal;
