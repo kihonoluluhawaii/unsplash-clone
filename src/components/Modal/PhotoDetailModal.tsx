@@ -2,8 +2,6 @@ import styled from "@emotion/styled";
 import { IPhoto } from "@/models/photos.ts";
 
 import { IconLeft, IconLike, IconPlus } from "@/components/Icons";
-import { useModal } from "@/hooks/useModal.ts";
-import FullScreenModal from "@/components/Modal/FullScreenModal.tsx";
 import React from "react";
 
 interface Props {
@@ -12,7 +10,6 @@ interface Props {
 }
 
 const PhotoDetailModal = ({ item, onClose }: Props) => {
-  const { openModal, closeModal } = useModal();
   const data = { isAgree: true };
 
   const handleImageClick = (e: React.MouseEvent<HTMLDivElement>) => {

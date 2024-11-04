@@ -1,7 +1,9 @@
 import styled from "@emotion/styled";
-import { useTopics } from "@/hooks/useTopic.ts";
 import cn from "classnames";
 import { Link, useLocation } from "react-router-dom";
+import ScrollMenu from "@/components/Lnb/TopicsLnb/ScrollMenu.tsx";
+import { useTopics } from "@/hooks/useTopic.ts";
+import React from "react";
 
 const STATIC_MENU = [
   { to: "/", title: "Photos" },
@@ -13,19 +15,21 @@ const TopicsLnb = () => {
   const { data } = useTopics({ per_page: 30 });
 
   return (
-    <Container>
-      {STATIC_MENU.map(({ to, title }) => (
-        <StaticNavLink
-          key={title}
-          to={to}
-          className={cn({ active: pathname === to })}
-        >
-          {title}
-        </StaticNavLink>
-      ))}
+    <Container className={"TopicsLnb"}>
+      <StaticNav>
+        {STATIC_MENU.map(({ to, title }) => (
+          <StaticNavLink
+            key={title}
+            to={to}
+            className={cn({ active: pathname === to })}
+          >
+            {title}
+          </StaticNavLink>
+        ))}
+      </StaticNav>
       <Divider />
-      <NavScroll>
-        {data?.map(({ title, slug }) => (
+      <ScrollMenu data={data}>
+        {({ title, slug }) => (
           <NavLink
             key={title}
             to={`/topics/${slug}`}
@@ -33,8 +37,8 @@ const TopicsLnb = () => {
           >
             <div>{title}</div>
           </NavLink>
-        ))}
-      </NavScroll>
+        )}
+      </ScrollMenu>
     </Container>
   );
 };
@@ -42,7 +46,7 @@ const TopicsLnb = () => {
 const Container = styled.div`
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: 24px;
   padding: 0 20px;
   color: #767676;
   box-sizing: border-box;
@@ -56,6 +60,12 @@ const Divider = styled.div`
   @media (max-width: 765px) {
     display: none;
   }
+`;
+
+const StaticNav = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 30px;
 `;
 
 const StaticNavLink = styled(Link)`
@@ -73,15 +83,6 @@ const StaticNavLink = styled(Link)`
     color: black;
     cursor: pointer;
   }
-`;
-
-const NavScroll = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 30px;
-  color: #767676;
-  box-sizing: border-box;
-  overflow: hidden;
 `;
 
 const NavLink = styled(Link)`
