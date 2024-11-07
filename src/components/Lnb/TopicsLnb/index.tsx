@@ -1,7 +1,10 @@
 import styled from "@emotion/styled";
-import { useTopics } from "@/hooks/useTopic.ts";
 import cn from "classnames";
 import { Link, useLocation } from "react-router-dom";
+import ScrollMenu from "@/components/Lnb/TopicsLnb/ScrollMenu.tsx";
+import React from "react";
+import TopicScrollMenu from "@/components/Lnb/TopicsLnb/TopicScrollMenu.tsx";
+import { useTopics } from "@/hooks/useTopic.ts";
 
 const STATIC_MENU = [
   { to: "/", title: "Photos" },
@@ -10,22 +13,25 @@ const STATIC_MENU = [
 
 const TopicsLnb = () => {
   const { pathname } = useLocation();
-  const { data } = useTopics({ per_page: 30 });
+  const { data } = useTopics();
 
   return (
-    <Container>
-      {STATIC_MENU.map(({ to, title }) => (
-        <StaticNavLink
-          key={title}
-          to={to}
-          className={cn({ active: pathname === to })}
-        >
-          {title}
-        </StaticNavLink>
-      ))}
+    <Container className={"TopicsLnb"}>
+      <StaticNav>
+        {STATIC_MENU.map(({ to, title }) => (
+          <StaticNavLink
+            key={title}
+            to={to}
+            className={cn({ active: pathname === to })}
+          >
+            {title}
+          </StaticNavLink>
+        ))}
+      </StaticNav>
       <Divider />
-      <NavScroll>
-        {data?.map(({ title, slug }) => (
+
+      <ScrollMenu data={data}>
+        {({ title, slug }) => (
           <NavLink
             key={title}
             to={`/topics/${slug}`}
@@ -33,8 +39,8 @@ const TopicsLnb = () => {
           >
             <div>{title}</div>
           </NavLink>
-        ))}
-      </NavScroll>
+        )}
+      </ScrollMenu>
     </Container>
   );
 };
@@ -42,8 +48,8 @@ const TopicsLnb = () => {
 const Container = styled.div`
   display: flex;
   align-items: center;
-  gap: 30px;
   padding: 0 20px;
+  gap: 30px;
   color: #767676;
   box-sizing: border-box;
 `;
@@ -56,6 +62,12 @@ const Divider = styled.div`
   @media (max-width: 765px) {
     display: none;
   }
+`;
+
+const StaticNav = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 30px;
 `;
 
 const StaticNavLink = styled(Link)`
@@ -74,16 +86,6 @@ const StaticNavLink = styled(Link)`
     cursor: pointer;
   }
 `;
-
-const NavScroll = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 30px;
-  color: #767676;
-  box-sizing: border-box;
-  overflow: hidden;
-`;
-
 const NavLink = styled(Link)`
   overflow-x: auto;
   display: flex;

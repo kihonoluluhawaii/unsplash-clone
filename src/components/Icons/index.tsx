@@ -164,3 +164,32 @@ export const IconVisual = () => (
     <path d="M5 15H3v4c0 1.1.9 2 2 2h4v-2H5v-4ZM5 5h4V3H5c-1.1 0-2 .9-2 2v4h2V5Zm14-2h-4v2h4v4h2V5c0-1.1-.9-2-2-2Zm0 16h-4v2h4c1.1 0 2-.9 2-2v-4h-2v4ZM12 8c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4Zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2Z"></path>
   </svg>
 );
+
+export const IconChevronRight = () => (
+  <svg
+    className="cK63W"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    version="1.1"
+    aria-hidden="false"
+    fill="currentColor"
+  >
+    <desc lang="en-US">Chevron right</desc>
+    <path d="M8.5 5.5 10 4l8 8-8 8-1.5-1.5L15 12 8.5 5.5Z"></path>
+  </svg>
+);
+export const IconChevronLeft = () => (
+  <svg
+    className="cK63W"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    version="1.1"
+    aria-hidden="false"
+    fill="currentColor"
+  >
+    <desc lang="en-US">Chevron left</desc>
+    <path d="M15.5 18.5 14 20l-8-8 8-8 1.5 1.5L9 12l6.5 6.5Z"></path>
+  </svg>
+);
