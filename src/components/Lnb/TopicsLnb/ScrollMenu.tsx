@@ -1,15 +1,14 @@
 import React, { ReactNode, useEffect, useRef, useState } from "react";
 import styled from "@emotion/styled";
 import { IconChevronLeft, IconChevronRight } from "@/components/Icons";
-import cn from "classnames";
 
 interface Props {
   children: (item: any) => ReactNode;
   data: any[];
-  renderItem: (item: any) => ReactNode;
+  render: (item: any) => ReactNode;
 }
 
-const ScrollMenu = ({ children, data }: Props) => {
+const ScrollMenu = ({ children, data, render }: Props) => {
   const trackRef = useRef<HTMLDivElement>(null);
 
   const [scrollLeft, setScrollLeft] = useState(0);
@@ -57,7 +56,7 @@ const ScrollMenu = ({ children, data }: Props) => {
   return (
     <Container className={"ScrollMenu"}>
       <Track onScroll={handleScroll} ref={trackRef}>
-        {data?.map((item) => renderItem(item))}
+        {data?.map((item) => render(item))}
       </Track>
 
       {!start && (

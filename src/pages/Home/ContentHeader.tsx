@@ -58,6 +58,7 @@ const ContentHeader = ({ title, desc }: Props) => {
 };
 
 const Container = styled.div`
+  padding: 24px 0;
   display: flex;
   align-items: center;
   width: 100%;

@@ -1,12 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
-import { getPhotos } from "@/services/photos.ts";
+import { getPhotos, IParams } from "@/services/photos.ts";
 import { useEffect } from "react";
 import { useToast } from "@/hooks/useToast.ts";
 
-export const usePhotos = () => {
+export const usePhotos = (params?: IParams) => {
   const { data, isError, error, ...rest } = useQuery({
-    queryKey: ["photos"],
-    queryFn: getPhotos,
+    queryKey: ["photos", params?.per_page, params?.page],
+    queryFn: () => getPhotos(params),
     retry: 0,
   });
 
@@ -20,7 +20,7 @@ export const usePhotos = () => {
       message: `usePhotos is Error\n\n ${JSON.stringify(error, null, 2)}`,
       duration: 10000,
     });
-  }, [isError]);
+  }, [error, isError, openToast]);
 
   return {
     data,

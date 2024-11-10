@@ -2,6 +2,8 @@ import styled from "@emotion/styled";
 import { IPhoto } from "@/models/photos.ts";
 import PhotoDetailModal from "@/components/Modal/PhotoDetailModal.tsx";
 import { useModal } from "@/hooks/useModal.ts";
+import LazyImage from "@/components/LazyImage";
+import RatioBox from "@/components/RatioBox";
 
 interface Props {
   item: IPhoto;
@@ -19,19 +21,20 @@ const PhotosItem = ({ item }: Props) => {
   };
 
   return (
-    <>
+    <RatioBox width={item.width} height={item.height} color={item.color}>
       <Container onClick={handlePhotoItemClick}>
-        <img src={item.urls.regular} alt={item.alt_description} />
+        <LazyImage src={item.urls.regular} />
       </Container>
-    </>
+    </RatioBox>
   );
 };
 
 const Container = styled.div`
   width: 100%;
 
-  > img {
+  img {
     width: 100%;
+    height: 100%;
     object-fit: cover;
   }
 `;

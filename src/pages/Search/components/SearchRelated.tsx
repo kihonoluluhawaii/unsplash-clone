@@ -23,7 +23,7 @@ const SearchRelated = () => {
     <Container>
       <ScrollMenu
         data={SEARCH_RELATED}
-        renderItem={({ title }) => (
+        render={({ title }) => (
           <NavLink key={title} to={`/search/${category}/${title}`}>
             {title.charAt(0).toUpperCase() + title.slice(1)}
           </NavLink>

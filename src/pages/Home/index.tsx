@@ -2,74 +2,41 @@ import styled from "@emotion/styled";
 import ContentHeader from "@/pages/Home/ContentHeader.tsx";
 import PhotosList from "@/components/photos/PhotosList.tsx";
 import { usePhotos } from "@/hooks/usePhotos.ts";
-import { useToast } from "@/hooks/useToast.ts";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { IPhoto } from "@/models/photos.ts";
+import InfiniteScroll from "@/components/InfiniteScroll";
 
 const Home = () => {
-  const { data } = usePhotos();
-  const { openToast } = useToast();
+  const [page, setPage] = useState(1);
+  const [stackData, setStackData] = useState<IPhoto[]>([]);
 
-  // const nextFlow = () => {
-  //   callEvent();
-  //   next();
-  // };
-  // const { session } = useSession();
-  //
-  // const { data: marketing } = useAgreeMarketing();
-  // const { refetch: callEvent } = useEventJoin();
-  //
-  // const handleEventJoin = async () => {
-  //   // 로그인체크
-  //   if (!session.memberNo) {
-  //     // 로그인 처리
-  //     // login()
-  //     return;
-  //   }
-  //
-  //   if (!marketing.isAgreeMarketing) {
-  //     const ok = await openModal((resolve) => (
-  //       <AgreeMarketing onConfirm={() => {
-  //           nextFlow()
-  //       }} />
-  //     ));
-  //
-  //     if (!ok) return;
-  //   }
-  //
-  // ================================================
+  const { data, isLoading } = usePhotos({ per_page: 50, page });
 
-  // nextFlow();
-  // };
+  useEffect(() => {
+    if (!data) return;
+    setStackData([...stackData, ...data]);
+  }, [data]);
+
+  const handleNext = useCallback(() => {
+    setPage((p) => p + 1);
+  }, []);
 
   return (
     <Container>
-      <button
-        onClick={() =>
-          openToast({
-            message: "토스트 입니다1",
-            hasClose: true,
-            duration: 10000,
-          })
-        }
-      >
-        참여하기
-      </button>
       <ContentHeader
         title="Unsplash"
         desc={`The internet's source for visuals. \nPowered by creators everywhere.`}
       />
-      <PhotosList data={data} />
+      <InfiniteScroll onNext={handleNext}>
+        <PhotosList data={stackData} />
+      </InfiniteScroll>
     </Container>
   );
 };
 
 const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   margin: 0 auto;
   max-width: 1300px;
-  height: 306px;
-  margin-block: 56px;
 `;
 
 export default Home;
