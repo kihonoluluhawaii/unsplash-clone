@@ -28,8 +28,9 @@ const TopicsLnb = () => {
         ))}
       </StaticNav>
       <Divider />
-      <ScrollMenu data={data}>
-        {({ title, slug }) => (
+      <ScrollMenu
+        data={data}
+        render={({ title, slug }) => (
           <NavLink
             key={title}
             to={`/topics/${slug}`}
@@ -38,7 +39,7 @@ const TopicsLnb = () => {
             <div>{title}</div>
           </NavLink>
         )}
-      </ScrollMenu>
+      />
     </Container>
   );
 };
