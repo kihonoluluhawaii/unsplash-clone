@@ -63,6 +63,7 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
   gap: 24px;
+  padding-top: 24px;
 `;
 
 const CategoryContainer = styled.div`

@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { Link, useParams } from "react-router-dom";
+import ScrollMenu from "@/components/Lnb/TopicsLnb/ScrollMenu.tsx";
 
 const SEARCH_RELATED = [
   { title: "blue" },
@@ -18,11 +19,14 @@ const SearchRelated = () => {
 
   return (
     <Container>
-      {SEARCH_RELATED.map(({ title }) => (
-        <NavLink key={title} to={`/search/${category}/${title}`}>
-          {title.charAt(0).toUpperCase() + title.slice(1)}
-        </NavLink>
-      ))}
+      <ScrollMenu
+        data={SEARCH_RELATED}
+        render={({ title }) => (
+          <NavLink key={title} to={`/search/${category}/${title}`}>
+            {title.charAt(0).toUpperCase() + title.slice(1)}
+          </NavLink>
+        )}
+      />
     </Container>
   );
 };

@@ -1,4 +1,10 @@
-import React, { createContext, ReactNode, useCallback, useState } from "react";
+import React, {
+  createContext,
+  ReactNode,
+  useCallback,
+  useRef,
+  useState,
+} from "react";
 import cn from "classnames";
 import { IconLeft, IconX } from "@/components/Icons";
 import styled from "@emotion/styled";
@@ -12,10 +18,16 @@ interface IModal {
   options?: IModalOptions;
 }
 
+type Resolver = (value: unknown) => void;
+type ModalFn = (resolver: Resolver) => ReactNode;
+
 interface IModalContext {
   modals: IModal[];
-  openModal: (el: ReactNode, options?: IModalOptions) => void;
-  closeModal: () => void;
+  openModal: (
+    el: ReactNode | ModalFn,
+    options?: IModalOptions,
+  ) => Promise<unknown>;
+  closeModal: (data?: unknown) => void;
 }
 
 export const ModalContext = createContext<IModalContext | null>(null);
@@ -26,25 +38,36 @@ interface Props {
 
 const ModalLayer = ({ children }: Props) => {
   const [modals, setModals] = useState<IModal[]>([]);
+  const resolverRef = useRef<(value: unknown) => void>();
 
   const openModal = useCallback(
-    (el: ReactNode, options?: IModalOptions) => {
-      setModals([
-        ...modals,
-        {
-          el,
-          options,
-        },
-      ]);
+    (el: ReactNode | ModalFn, options?: IModalOptions) => {
+      return new Promise((resolve) => {
+        const modalEl = typeof el === "function" ? el(resolve) : el;
+
+        setModals([
+          ...modals,
+          {
+            el: modalEl,
+            options,
+          },
+        ]);
+
+        resolverRef.current = resolve;
+      });
     },
     [modals],
   );
 
-  const closeModal = useCallback(() => {
-    const nextModals = [...modals];
-    nextModals.pop();
-    setModals(nextModals);
-  }, [modals]);
+  const closeModal = useCallback(
+    (data?: unknown) => {
+      const nextModals = [...modals];
+      nextModals.pop();
+      setModals(nextModals);
+      resolverRef.current?.(data);
+    },
+    [modals],
+  );
 
   const handleModalInside = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -61,7 +84,10 @@ const ModalLayer = ({ children }: Props) => {
       {children}
 
       {modals.map((modal) => (
-        <Container className={cn("ModalContainer")} onClick={closeModal}>
+        <Container
+          className={cn("ModalContainer")}
+          onClick={() => closeModal("딤클릭!")}
+        >
           <Box>
             <IconX />
             <Overlay />
