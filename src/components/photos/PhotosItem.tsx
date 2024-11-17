@@ -4,6 +4,7 @@ import PhotoDetailModal from "@/components/Modal/PhotoDetailModal.tsx";
 import { useModal } from "@/hooks/useModal.ts";
 import LazyImage from "@/components/LazyImage";
 import RatioBox from "@/components/RatioBox";
+import { useEffect } from "react";
 
 interface Props {
   item: IPhoto;
