@@ -1,10 +1,10 @@
 import styled from "@emotion/styled";
-import CollectionPhotoItem from "@/components/collections/CollectionPhotoItem.tsx";
-import CollectionDescription from "@/components/collections/CollectionDescription.tsx";
-import { Result } from "@/models/search.ts";
+import Item from "@/components/collections/Item.tsx";
+import Description from "@/components/collections/Description.tsx";
+import { ICollection } from "@/models/collections.ts";
 
 interface Props {
-  data?: Result[];
+  data?: ICollection[];
 }
 const CollectionPhotoList = ({ data = [] }: Props) => {
   return (
@@ -12,8 +12,8 @@ const CollectionPhotoList = ({ data = [] }: Props) => {
       {data.map((item) => {
         return (
           <Col key={item.id}>
-            <CollectionPhotoItem item={item} />
-            <CollectionDescription item={item} />
+            <Item item={item} />
+            <Description item={item} />
           </Col>
         );
       })}
@@ -22,10 +22,11 @@ const CollectionPhotoList = ({ data = [] }: Props) => {
 };
 
 const Container = styled.div`
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 `;
 
 const Col = styled.div``;
+
 export default CollectionPhotoList;

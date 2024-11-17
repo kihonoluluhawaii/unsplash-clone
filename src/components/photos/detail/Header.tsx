@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import { IconLeft, IconLike, IconPlus } from "@/components/Icons";
-import React from "react";
 import { IPhoto } from "@/models/photos.ts";
 
 interface Props {

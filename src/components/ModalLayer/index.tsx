@@ -1,4 +1,4 @@
-import React, {
+import {
   createContext,
   ReactNode,
   useCallback,
@@ -6,13 +6,11 @@ import React, {
   useRef,
   useState,
 } from "react";
-import cn from "classnames";
-import { IconLeft, IconX } from "@/components/Icons";
-import styled from "@emotion/styled";
 import ModalContainer from "@/components/ModalLayer/ModalContainer.tsx";
 
 interface IModalOptions {
   size?: string;
+  onClose: () => void;
 }
 
 interface IModal {
@@ -67,14 +65,10 @@ const ModalLayer = ({ children }: Props) => {
       const nextModals = [...modals];
       nextModals.pop();
       setModals(nextModals);
-      resolverRef.current?.(data);
+      resolverRef.current?.(data ?? true);
     },
     [modals],
   );
-
-  const handleModalInside = (e: React.MouseEvent) => {
-    e.stopPropagation();
-  };
 
   useEffect(() => {
     if (isOpen) {
@@ -95,7 +89,14 @@ const ModalLayer = ({ children }: Props) => {
       {children}
 
       {modals.map((modal) => (
-        <ModalContainer onClose={closeModal}>{modal.el}</ModalContainer>
+        <ModalContainer
+          onClose={() => {
+            modal.options?.onClose();
+            closeModal();
+          }}
+        >
+          {modal.el}
+        </ModalContainer>
       ))}
     </ModalContext.Provider>
   );

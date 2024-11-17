@@ -1,5 +1,8 @@
 import { httpClient } from "@/services/httpClient.ts";
-import { ISearchResponse } from "@/models/search.ts";
+import {
+  ISearchCollectionsResponse,
+  ISearchPhotosResponse,
+} from "@/models/search.ts";
 
 interface ISearchParams {
   query: string;
@@ -24,7 +27,7 @@ interface ISearchParams {
 }
 
 export const searchPhotos = async (params: ISearchParams) => {
-  const { data } = await httpClient<ISearchResponse>({
+  const { data } = await httpClient<ISearchPhotosResponse>({
     method: "get",
     url: "/search/photos",
     params,
@@ -33,7 +36,7 @@ export const searchPhotos = async (params: ISearchParams) => {
 };
 
 export const searchCollections = async (params: ISearchParams) => {
-  const { data } = await httpClient<ISearchResponse>({
+  const { data } = await httpClient<ISearchCollectionsResponse>({
     method: "get",
     url: "/search/collections",
     params,

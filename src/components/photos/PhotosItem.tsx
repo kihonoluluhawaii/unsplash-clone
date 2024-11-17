@@ -4,18 +4,22 @@ import PhotoDetailModal from "@/components/PhotosModal/PhotoDetailModal.tsx";
 import { useModal } from "@/hooks/useModal.ts";
 import LazyImage from "@/components/LazyImage";
 import RatioBox from "@/components/RatioBox";
-import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 interface Props {
   item: IPhoto;
 }
 const PhotosItem = ({ item }: Props) => {
-  const { openModal, closeModal } = useModal();
+  const location = useLocation();
+  const { openModal } = useModal();
 
   const handlePhotoItemClick = async () => {
-    const result = await openModal((resolve) => (
-      <PhotoDetailModal onClose={() => closeModal(true)} item={item} />
-    ));
+    window.history.pushState(null, "", `/photos/${item.slug}`);
+    const isClosed = await openModal(<PhotoDetailModal item={item} />);
+
+    if (isClosed) {
+      window.history.pushState(null, "", location.pathname);
+    }
   };
 
   return (

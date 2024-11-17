@@ -16,3 +16,24 @@ export const getPhotos = async (params?: IParams) => {
 
   return data;
 };
+
+export const getPhotosBySlug = async (slug: string) => {
+  const { data } = await httpClient<IPhoto>({
+    method: "GET",
+    url: `/photos/${slug}`,
+  });
+
+  return data;
+};
+
+export const getPhotosRelated = async (slug: string) => {
+  const { data } = await httpClient<{
+    total: number;
+    results: IPhoto[];
+  }>({
+    method: "GET",
+    url: `/photos/${slug}/related`,
+  });
+
+  return data;
+};

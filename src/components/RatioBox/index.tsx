@@ -3,14 +3,19 @@ import { ReactNode } from "react";
 
 interface Props {
   children?: ReactNode;
-  width: number;
-  height: number;
-  color: string;
+  width?: number;
+  height?: number;
+  color?: string;
 }
-const RatioBox = ({ children, width, height, color }: Props) => {
+const RatioBox = ({
+  children,
+  width = 1,
+  height = 1,
+  color = "transparent",
+}: Props) => {
   const percentage = (100 / width) * height;
   return (
-    <Container percentage={percentage} color={color}>
+    <Container percentage={percentage} color={color} className={"RatioBox"}>
       <Inner>{children}</Inner>
     </Container>
   );

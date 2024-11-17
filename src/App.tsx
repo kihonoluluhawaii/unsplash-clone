@@ -7,6 +7,7 @@ import { lazy, Suspense } from "react";
 import NotFound from "@/pages/NotFound";
 import ModalLayer from "@/components/ModalLayer";
 import ToastProvider from "@/providers/ToastProvider";
+import Photos from "@/pages/Photos";
 
 const Search = lazy(() => import("@/pages/Search"));
 const Topic = lazy(() => import("@/pages/Topic"));
@@ -20,6 +21,7 @@ function App() {
             <Layout>
               <Routes>
                 <Route path={"/"} element={<Home />} />
+                <Route path={"/photos/:slug"} element={<Photos />} />
                 <Route path={"/topics/:slug"} element={<Topic />} />
                 <Route path={"/search/:category/:query"} element={<Search />} />
                 <Route path={"*"} element={<NotFound />} />
