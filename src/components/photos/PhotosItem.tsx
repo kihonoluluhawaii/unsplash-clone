@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { IPhoto } from "@/models/photos.ts";
-import PhotoDetailModal from "@/components/Modal/PhotoDetailModal.tsx";
+import PhotoDetailModal from "@/components/PhotosModal/PhotoDetailModal.tsx";
 import { useModal } from "@/hooks/useModal.ts";
 import LazyImage from "@/components/LazyImage";
 import RatioBox from "@/components/RatioBox";
